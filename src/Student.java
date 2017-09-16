@@ -1,4 +1,3 @@
-package javaproject;
 import java.util.Date;
 
 /**
