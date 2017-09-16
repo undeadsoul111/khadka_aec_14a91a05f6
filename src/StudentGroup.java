@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 /**
@@ -198,19 +200,34 @@ public class StudentGroup implements StudentArrayOperation {
             }
             Student[] students1;
             students1=studentList.toArray(new Student[studentList.size()]);
-		return null;
+		return students1;
 	}
 
 	@Override
 	public Student[] getBetweenBirthDates(Date firstDate, Date lastDate) {
 		// Add your implementation here
-		return null;
+                ArrayList<Student> studentList=new ArrayList<>();
+                for (Student student : students) {
+                        if ((student.getBirthDate().compareTo(firstDate)>=0) &&
+                                (student.getBirthDate().compareTo(lastDate)<=0)) {
+                    studentList.add(student);
+                }
+            }
+                Student[] students1;
+            students1=studentList.toArray(new Student[studentList.size()]);
+		return students1;
+		
 	}
 
 	@Override
 	public Student[] getNearBirthDate(Date date, int days) {
 		// Add your implementation here
-		return null;
+                GregorianCalendar cal=new GregorianCalendar();
+                cal.setTime(date);
+                cal.add(Calendar.DATE, days);
+                
+		Date date2=cal.getTime();
+                return getBetweenBirthDates(date, date2);
 	}
 
 	@Override
